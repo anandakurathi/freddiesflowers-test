@@ -9,7 +9,7 @@ class Subscription
      *
      * @var int
      */
-    const STATUS_ACTIVE    = 1;
+    const STATUS_ACTIVE = 1;
     const STATUS_CANCELLED = 2;
 
     /**
@@ -18,7 +18,7 @@ class Subscription
      * @var array
      */
     const STATUSES_ALLOWED = [
-        self::STATUS_ACTIVE    => 'Active',
+        self::STATUS_ACTIVE => 'Active',
         self::STATUS_CANCELLED => 'Cancelled',
     ];
 
@@ -27,7 +27,7 @@ class Subscription
      *
      * @var int
      */
-    const PLAN_WEEKLY      = 1;
+    const PLAN_WEEKLY = 1;
     const PLAN_FORTNIGHTLY = 2;
 
     /**
@@ -36,7 +36,7 @@ class Subscription
      * @var array
      */
     const PLANS_ALLOWED = [
-        self::PLAN_WEEKLY      => 'Weekly',
+        self::PLAN_WEEKLY => 'Weekly',
         self::PLAN_FORTNIGHTLY => 'Fortnightly',
     ];
 
@@ -60,4 +60,64 @@ class Subscription
      * @var \Carbon\Carbon|null
      */
     protected $nextDeliveryDate;
+
+    /**
+     * Set next delivery date
+     * @param  \Carbon\Carbon|null  $nextDeliveryDate
+     * @return self
+     */
+    public function setNextDeliveryDate($nextDeliveryDate)
+    {
+        $this->nextDeliveryDate = $nextDeliveryDate;
+        return $this;
+    }
+
+    /**
+     * Set subscription plan
+     * @param  int  $plan
+     * @return self
+     */
+    public function setPlan($plan)
+    {
+        $this->plan = $plan;
+        return $this;
+    }
+
+    /**
+     * Set Status of subscription
+     * @param  int  $status
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * Get the delivery date
+     * @return \Carbon\Carbon|null
+     */
+    public function getNextDeliveryDate()
+    {
+        return $this->nextDeliveryDate;
+    }
+
+    /**
+     * Get the selected plan
+     * @return mixed|string
+     */
+    public function getPlan()
+    {
+        return self::PLANS_ALLOWED[$this->plan];
+    }
+
+    /**
+     * Get the Status of subscription
+     * @return mixed|string
+     */
+    public function getStatus()
+    {
+        return self::STATUSES_ALLOWED[$this->status];
+    }
 }
